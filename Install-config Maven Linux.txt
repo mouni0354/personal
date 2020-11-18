@@ -1,0 +1,65 @@
+#-----Download,Install,Configure Maven 3.5.4 on CENTOS/RHEL/AMAZON/Ubuntu LINUX--------------------#
+
+
+ login to your VM
+ 
+# sudo su -
+
+
+STEP-1 : Go to /opt directory & Download Apache Maven 
+# cd /opt
+
+# wget http://www-us.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip
+
+STEP-2 : Unzip 
+
+# unzip apache-maven-3.5.4-bin.zip
+
+STEP-3 : Rename 
+
+# mv apache-maven-3.5.4 maven
+
+STEP-4 : Setup Maven Home Path & Configure for all users
+
+cat /etc/profile 
+
+
+
+
+# vi /etc/profile
+
+:se nu  #set the line number
+Esc & i for insert
+
+#Maven Home Path
+export MAVEN_HOME=/opt/maven/
+export M2_HOME=$MAVEN_HOME/bin
+export PATH=$PATH:$MAVEN_HOME/bin
+
+Esc :wq
+
+STEP-5 : compile it.
+
+source /etc/profile
+
+STEP-6 : Check the Apache Maven Version
+
+# mvn -version
+
+[root@vlmazjuly109 opt]# source /etc/profile
+[root@vlmazjuly109 opt]# mvn -version
+Apache Maven 3.5.4 (1edded0938998edf8bf061f1ceb3cfdeccf443fe; 2018-06-17T13:33:14-05:00)
+Maven home: /opt/maven
+Java version: 1.8.0_265, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.18.0-147.27.1.el8_1.x86_64", arch: "amd64", family: "unix"
+[root@vlmazjuly109 opt]# echo $MAVEN_HOME
+/opt/maven/
+[root@vlmazjuly109 opt]#
+[root@vlmazjuly109 opt]# echo $M2_HOME
+/opt/maven//bin
+
+
+
+
+

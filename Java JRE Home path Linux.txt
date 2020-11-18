@@ -1,0 +1,57 @@
+#--Download,Install,Configure Java 1.8 & Jre on CENTOS/RHEL/AMAZON LINUX--#
+
+STEP-1 : Check the Java Version
+
+# java -version
+
+STEP-2 : Remove the older version of Java if any
+
+# yum remove java
+
+STEP-3 : Download, Install & Configure java 1.8 
+
+# yum install java-1.8* -y
+
+STEP-4 : Check the Java Version
+
+# java -version
+
+STEP-5 : Setup Java Home Path & Configure for all users
+
+cat /etc/profile & /etc/bashrc
+
+:se nu  #set the line number
+:20 go to line num 20
+
+Wsc & i for insert
+
+# vi /etc/profile
+
+#Java Home Path
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/"
+export JRE_HOME="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/jre"
+export PATH=$PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/jre/bin
+
+:wq
+
+
+STEP-6 : compile it.
+
+source /etc/profile
+
+[root@vlmazjuly109 /]# source /etc/profile
+
+Step-7 : check the version
+
+[e5285888@vlmazjuly109 ~]$ echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/
+
+[root@vlmazjuly109 ~]# echo $JAVA_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/
+
+[root@vlmazjuly109 ~]# echo $JRE_HOME
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.265.b01-0.el8_1.x86_64/jre
+
+
+--------------

@@ -1,0 +1,55 @@
+*--------- Tomcat Download, Install & Configure ---------*
+
+Step-1:
+
+# wget http://mirrors.ibiblio.org/apache/tomcat/tomcat-8/v8.5.58/bin/apache-tomcat-8.5.58.zip
+
+
+Step-2:
+# unzip apache-tomcat-8.5.58.zip
+
+Step-3:
+#  mv apache-tomcat-8.5.58 tomcat
+
+
+Step-4:
+# cd /tomcat
+
+if you want to access tomcat from your browser we need some changes.
+
+# vi webapps/host-manager/META-INF/context.xml
+
+	:se nu
+	:20   (move to line number 20)
+	Add this expression |.* end of the line      allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|.*" />   (That means u r giving access to manager and manager-gui, (access a service called Host-manager from any n/w from IPv4 and IPV6 ))
+	Save and quite (:wq)
+
+# vi webapps/manager/META-INF/context.xml
+
+	:se nu
+	:20   (move to line number 20)
+	Add this expression |.* end of the line    (access a service called Host-manager from any n/w from IPv4 and IPV6 )
+	Save and quite (:wq)
+	
+Step-5:
+
+# cd /opt/tomcat/conf
+
+# vi tomcat-users.xml
+
+	:se nu
+	Move the cursor to the last line (Shift +g)
+	Move the cursor to the line no 38
+	Now you have to copy line no 38,39,40 (on keyboard press 3yy)
+	Paste it on line no 44 (on keyboard press p)
+	Update those line as below
+     <role rolename="admin-gui"/>
+     <role rolename="manager-gui"/>
+     <role rolename="manager-script"/>
+     <user username="admin" password="redhat@123" roles="admin-gui,manager-gui,manager-script"/>
+</tomcat-users>
+
+# cd ..
+# /opt/tomcat/bin#./startup.sh
+# /opt/tomcat/bin# ps -aux | grep tomcat
+

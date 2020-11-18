@@ -1,0 +1,142 @@
+*---- Download, Install & Configure Jenkins ----*
+
+
+-------------------------------------------------------------------
+
+Step-1: Add the Jenkins repository to the yum repos
+Now, run the following to download Jenkins from the Red Hat repo:
+
+# sudo su -
+
+
+# sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+[root@vlmazjuly109 opt]# ls -lrt /etc/yum.repos.d
+total 16
+-rw-r--r--  1 root root   71 Nov 29  2016 jenkins.repo
+-rw-r--r--. 1 root root 4371 Jul  1 01:53 rh-cloud-rhel8-eus.repo
+-rw-r--r--. 1 root root  358 Aug 12 10:47 redhat.repo
+
+
+Step-2: Then, import the verification key using the package manager RPM:
+
+# sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+Step-3: Update yum repo:
+# yum update -y
+
+Step-4: Install Jenkins as a service:
+# yum install jenkins -y
+
+
+Step-5: 
+# sudo systemctl daemon-reload
+
+Step-6: Start jenkins as service
+# sudo systemctl start jenkins
+
+Step-7: Check the status
+# systemctl status jenkins
+
+
+
+Change Jenkins port from default to your custom #port
+
+# cd /etc/sysconfig
+
+# vi jenkins 
+
+/8080
+
+# systemctl start jenkins
+
+# systemctl status jenkins
+
+--------------------------------------------
+Login to Jenkins
+
+Lunch jenkins 
+http://<Instance ip address>:9090/
+
+http://10.7.157.204:9090/
+
+# cat /var/lib/Jenkins/secrets/initialAdminPassword
+{AXWTYR#$%gkjJSJJD:D:VBBQQER}
+
+	copy the above password and login to Jenkins >> CLick on Install suggested plugins 
+
+	We have to configure Username 
+	Username: admin 
+	Password: redhat@123
+	E-mail address: satyasahuaws@gmail.com 
+
+Manage jenkins -> Global tool configuration
+   Add JDK 
+   Name as "JAVA"
+   JAVA_HOME "..........."
+   
+   Add Maven
+   Name as "maven"
+   MAVEN_HOME "...."
+   
+ Apply and save
+ 
+Go to Jenkins >> Manage Jenkins >> Manage Plugins >> Under Available add below mentioned plugins need to install.
+	Jenkins Plugins :
+	1. Conditional Buildstep
+	2. Deploy to container
+	3. Environment Injector
+	4. Git Parameter
+	5. GitHub Branch Source
+
+  Once above plugins installed restart Jenkins
+
+
+
+
+
+# sudo systemctl enable jenkins.service
+# sudo systemctl start jenkins.service
+# sudo systemctl status jenkins.service
+
+
+
+# sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+# sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+# sudo yum upgrade
+# sudo yum install jenkins 
+# sudo systemctl daemon-reload
+# systemctl restart jenkins
+
+
+
+
+
+
+-------------------------
+
+
+
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+
+java -jar jenkins.war --httpPort=8090
+
+http://10.7.157.204:8090/
+
+
+
+Good reference:
+
+https://linuxconfig.org/how-to-install-jenkins-on-redhat-8
+
+https://scmquest.com/jenkins-installation-and-configuration-on-redhat-distributions-with-screenshots/
+
+
+
+
+
+------------------
+
+https://devops4solutions.com/jenkins-jfrog-artifactory-integration/
